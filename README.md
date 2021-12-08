@@ -1,19 +1,19 @@
 # recruit-h5
 
 #### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+{**本项目为vite vue3 typeScript Vant 构建的H5应用 只是基础框架**}
+
+vite + vue + ts 项目构建过程 及 可能遇到的问题 [https://zhuanlan.zhihu.com/p/434462624](https://zhuanlan.zhihu.com/p/434462624)
 
 #### 软件架构
-软件架构说明
+使用了多环境配置
 
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  git clone xxx
+2.  npm install
+3.  npm run dev
 
 #### 使用说明
 
