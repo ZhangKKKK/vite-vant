@@ -1,14 +1,44 @@
-import { shallowRef } from 'vue'
 import { BasicLayout } from '@/components/Layout';
 // import { defineAsyncComponent } from 'vue'
 import { RouteRecordRaw } from 'vue-router';
-// import Login from '@/pages/user/login/index.vue'
 
 export const baseRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/pages/index.vue')
+    component: BasicLayout,
+    children: [
+      {
+        path: '',
+        name: '',
+        meta: { title: '首页' },
+        component: () => import('@/pages/index.vue')
+      },
+      {
+        path: '/account',
+        name: 'account',
+        meta: { title: 'JSX' },
+        component: () => import('@/pages/demo/account')
+      },
+      {
+        path: '/list',
+        name: 'list',
+        meta: { title: '列表' },
+        component: () => import('@/pages/demo/list.vue')
+      },
+      {
+        path: '/about',
+        name: 'about',
+        meta: { title: '关于' },
+        component: () => import('@/pages/about.vue')
+      },
+      {
+        path: '/edit-resume',
+        name: 'edit-resume',
+        meta: { title: '编辑简历' },
+        component: () => import('@/pages/resume/edit-resume.vue')
+      }
+    ]
     
   }
 ]

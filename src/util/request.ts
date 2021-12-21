@@ -1,8 +1,7 @@
 
 import axios, { AxiosRequestConfig } from 'axios'
+import { AxiosResponse, IResp } from '@/interface/api'
 import { TOKEN } from '@/config/global'
-import { Decrypt } from '@/util/encrypt'
-import Base64 from '@/util/base64'
 
 // 创建 axios 实例
 const service = axios.create({
@@ -45,10 +44,10 @@ service.interceptors.request.use((config: AxiosRequestConfig) => {
 }, err)
 
 // response interceptor
-service.interceptors.response.use((response) => {
+service.interceptors.response.use((response: AxiosResponse) => {
   // 未登录
   // 0871 无查看权限
-  if (response.data.StatusCode === 2164260879 || response.data.StatusCode === 2164260871) {
+  if (response.data.code === 2164260879 || response.data.code === 2164260871) {
     return err(response)
   }
   return response.data

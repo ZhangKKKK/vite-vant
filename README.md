@@ -3,8 +3,6 @@
 #### 介绍
 {**本项目为vite vue3 typeScript Vant 构建的H5应用 只是基础框架**}
 
-vite + vue + ts 项目构建过程 及 可能遇到的问题 [https://zhuanlan.zhihu.com/p/434462624](https://zhuanlan.zhihu.com/p/434462624)
-
 #### 软件架构
 使用了多环境配置
 

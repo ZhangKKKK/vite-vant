@@ -8,3 +8,11 @@ export const getAccountListApi = (params: object) => {
     data: params
   })
 }
+
+export const getHomeListApi = (params: object) => {
+  return axios({
+    url: BASE_URL + '/home',
+    method: 'post',
+    data: params
+  })
+}
