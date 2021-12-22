@@ -1,11 +1,13 @@
 
 import axios, { AxiosRequestConfig } from 'axios'
 import { AxiosResponse, IResp } from '@/interface/api'
-import { TOKEN } from '@/config/global'
+import { TOKEN, BASE_URL } from '@/config/global'
+
+console.log(BASE_URL, import.meta.env.VITE_APP_PROXY_URL, import.meta.env.VITE_APP_ENV)
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: '', // api base_url
+  baseURL: BASE_URL, // api base_url
   timeout: 1000 * 60 * 3 // 请求超时时间
 })
 

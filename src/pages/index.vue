@@ -12,8 +12,8 @@
     <div class="title">
       共1200个职位
       <van-button class="title-btn" type="primary" size="mini" color="#519214">
+        <van-icon :name="getAssetsFile('images/share.png')" />
         转发
-        <van-icon name="share-o" />
       </van-button>
     </div>
     <div class="list">
@@ -50,6 +50,24 @@
                   <van-icon :name="getAssetsFile('images/home-icon(3).png')" />
                   <span>{{ item.mobile }}</span>
                 </div>
+              </div>
+              <!-- <transition name="expand">
+                <div v-if="item.expand" class="list-item-desc">
+                  <div class="list-item-desc-title">关于公司</div>
+                </div>
+              </transition> -->
+              <div :ref="el => { nodes[index] = el }" class="list-item-desc">
+                <div class="list-item-desc-title">关于公司</div>
+                <div class="list-item-desc-content">{{ item.companyInfo }}</div>
+
+                <div class="list-item-desc-title">薪酬待遇</div>
+                <div class="list-item-desc-content">{{ item.moneyInfo }}</div>
+
+                <div class="list-item-desc-title">职位描述</div>
+                <div class="list-item-desc-content">{{ item.jobInfo }}</div>
+              </div>
+              <div class="list-item-opea" @click="expandToggle(item, index)">
+                <van-icon class="list-item-opea-icon" :style="{ transform: item.expand ? 'rotateZ(180deg)' : 'rotateZ(0)'}" name="arrow-down" />
               </div>
               <van-checkbox class="checkbox" shape="square" :name="item.name"></van-checkbox>
             </div>
@@ -103,7 +121,12 @@ export default defineComponent({
         console.log(res)
         loading.value = false
         if (res.code === 0) {
-          dataList.value = dataList.value.concat(res.data)
+          res.data = res.data || []
+          const data = res.data.map((item: any) => {
+            item.expand = false
+            return item
+          })
+          dataList.value = dataList.value.concat(data)
           if (dataList.value.length >= 50) {
             finished.value = true
           }
@@ -115,6 +138,18 @@ export default defineComponent({
       })
     }
 
+    const nodes: any = ref({})
+    const expandToggle = (item: IHomeList, index: number) => {
+      console.log(nodes)
+      // console.log(desc.value.scrollHeight)
+      if (nodes.value[index].style.maxHeight) {
+        nodes.value[index].style.maxHeight = null
+      } else {
+        nodes.value[index].style.maxHeight = nodes.value[index].scrollHeight + 'px'
+      }
+      dataList.value[index].expand = !item.expand
+    }
+
     return {
       list,
       loading,
@@ -123,6 +158,8 @@ export default defineComponent({
       onRefresh,
       onLoad,
       dataList,
+      nodes,
+      expandToggle,
       checkedArr,
       getAssetsFile: Pub.getAssetsFile
     }
@@ -189,13 +226,14 @@ header {
   width: 355px;
   height: auto;
   margin: 0 auto;
-  background: #fff;
-  border-radius: 8px;
   &-item {
     padding: 10px;
     box-sizing: border-box;
     padding-left: 35px;
     position: relative;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 10px;
     .checkbox {
       position: absolute;
       top: 13px;
@@ -222,6 +260,43 @@ header {
         span {
           margin-left: 3px;
         }
+      }
+    }
+    &-desc {
+      max-height: 0;
+      overflow: hidden;
+      transition: all .2s;
+      // display: none;
+      // overflow: hidden;
+      // transition: height .3 ease-in-out;
+      // will-change: height;
+      // max-height: 1100px;
+      &::before {
+        content: '';
+        display: block;
+        border-top: 1px dashed #ccc;
+        margin: 12px 0;
+      }
+      &-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: @threeColor;
+        line-height: 16px;
+      }
+      &-content {
+        color: @sixColor;
+        line-height: 14px;
+        margin: 9px 0 12px 0;
+      }
+    }
+    &-opea {
+      line-height: 18px;
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: -10px;
+      &-icon {
+        transition: all .5s;
+        // transform: rotateZ(0);
       }
     }
   }

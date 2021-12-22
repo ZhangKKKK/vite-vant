@@ -16,6 +16,19 @@
   opacity: 0;
 }
 
+/* 过度动画 */
+
+.expand-enter-active,
+.expand-leave-active {
+  transition: all 0.2s ease;
+}
+
+.expand-enter-from,
+.expand-leave-to {
+  max-height: 0 !important;
+  opacity: 0;
+}
+
 
 // vant 样式覆盖
 .van-field__body {

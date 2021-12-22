@@ -17,17 +17,18 @@ export default defineComponent({
   setup (props) {
     console.log(props)
     let bool = ref(true)
+    const form = reactive({
+      username: ''
+    })
     const onSubmit = (e: MouseEvent) => {
       console.log(e)
+      console.log(form)
       bool.value = !bool.value
       console.log('click 向父组件传值', bool.value)
       props.transEvent(bool.value)
 
       console.log(form)
     }
-    const form = reactive({
-      username: ''
-    })
     return { onSubmit, bool, form }
   },
   // options APi 语法
@@ -50,6 +51,7 @@ export default defineComponent({
       <Form onSubmit={this.onSubmit}>
         <Field
           label="中文名"
+          v-model={this.form.username}
           name="username"
           autocomplete='off'
           inputAlign='right'>

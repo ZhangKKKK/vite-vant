@@ -1,7 +1,8 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Tabbar, TabbarItem } from 'vant';
+import { getAccountListApi } from '@/api/index'
 export default defineComponent({
   components: {
     [Tabbar.name]: Tabbar,
@@ -12,6 +13,14 @@ export default defineComponent({
     let active = ref('/')
     const onChange = (name: string) => router.push(name)
     const show = true
+
+    onMounted(() => {
+      getAccountListApi({}).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    })
     return { active, onChange, show }
   }
 })

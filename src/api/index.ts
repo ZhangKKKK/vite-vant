@@ -1,9 +1,9 @@
-import { BASE_URL } from "@/config/global"
+import { PROXY_URL } from "@/config/global"
 import { axios } from '@/util/request'
 
 export const getAccountListApi = (params: object) => {
   return axios({
-    url: BASE_URL + '/json/reply/QueryCustomerInfoPageReq',
+    url: PROXY_URL + '/json/reply/QueryCustomerInfoPageReq',
     method: 'post',
     data: params
   })
@@ -11,7 +11,7 @@ export const getAccountListApi = (params: object) => {
 
 export const getHomeListApi = (params: object) => {
   return axios({
-    url: BASE_URL + '/home',
+    url: PROXY_URL + '/home',
     method: 'post',
     data: params
   })

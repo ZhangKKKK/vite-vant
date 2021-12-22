@@ -19,5 +19,9 @@ export interface IHomeList {
   id?: number | string,
   date?: string,
   city?: string,
-  mobile?: string
+  mobile?: string,
+  expand?: boolean,
+  companyInfo?: string,
+  moneyInfo?: string,
+  jobInfo?: string
 }
